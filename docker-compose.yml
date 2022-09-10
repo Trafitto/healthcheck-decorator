@@ -1,0 +1,16 @@
+version: "2"
+services:
+  healthcheck-decorator:
+    container_name: healthcheck-decorator
+    # command: ./app.py
+    command: tail -f /dev/null
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+
+  redis:
+    image: redis
+    ports:
+      - 6379
