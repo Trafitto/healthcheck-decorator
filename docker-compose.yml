@@ -3,7 +3,6 @@ services:
   healthcheck-decorator:
     container_name: healthcheck-decorator
     # command: ./app.py
-    command: tail -f /dev/null
     build: .
     ports:
       - "5000:5000"
