@@ -1,9 +1,7 @@
 import time
-import redis
 from healtcheck_decorator.heathcheck import healthcheck
 from healtcheck_decorator.monitor import HealthcheckedFunctionMonitor
 
-redis_client = redis.Redis(host='redis', port=6379, db=0)
 
 @healthcheck
 def test():
@@ -18,19 +16,21 @@ def test_function_not_working():
     print('This function never runs')
 
 def checker():
-    keys = HealthcheckedFunctionMonitor().get()
+    monitor = HealthcheckedFunctionMonitor()
+    keys = monitor.get()
+    cache_client = monitor.get_cache_client()
     for key in keys:
-        if redis_client.get(key):
+        if cache_client.get(key):
             print(f'{key} ok')
         else:
             print(f'{key} not working')
 
 if __name__ == '__main__':
-    '''     test()
+    test()
     time.sleep(1)
     test_key()
     time.sleep(1)
-    checker() '''
+    checker()
     while True:
         pass
     

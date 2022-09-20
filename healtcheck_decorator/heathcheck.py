@@ -3,7 +3,7 @@ from .monitor import HealthcheckedFunctionMonitor
 from .conf import DEFAULT_TTL, REDIS_HOST, REDIS_DB, REDIS_PORT
 
 monitor = HealthcheckedFunctionMonitor()
-redis_client = monitor.get_cache_instance()
+redis_client = monitor.get_cache_client()
 default_ttl = DEFAULT_TTL
 
 

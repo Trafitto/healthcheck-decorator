@@ -8,7 +8,7 @@ from healtcheck_decorator.monitor import HealthcheckedFunctionMonitor
 @pytest.fixture(autouse=True)
 def redis_db():
     monitor = HealthcheckedFunctionMonitor()
-    cache = monitor.get_cache_instance()
+    cache = monitor.get_cache_client()
     keys = cache.keys('*')
     monitor.delete('*')
     if keys:
@@ -31,7 +31,7 @@ def test_cache_key():
     to_be_decorated()
     monitor = HealthcheckedFunctionMonitor()
     keys = monitor.get()
-    redis = monitor.get_cache_instance()
+    redis = monitor.get_cache_client()
     redis_key = redis.keys('*')
     assert len(keys) == len(redis_key)
     assert redis_key[0].decode('ascii') == 'to_be_decorated'

@@ -7,7 +7,7 @@ class HealthcheckedFunctionMonitor:
     cache = None
 
     def __init__(self):
-        self.cache = self.get_cache_instance()
+        self.cache = self.get_cache_client()
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -27,7 +27,7 @@ class HealthcheckedFunctionMonitor:
         if self.healchecked_function:
             del self.healchecked_function[key]
 
-    def get_cache_instance(self):
+    def get_cache_client(self):
         if not self.cache:
             self.cache = redis.Redis(
                 host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
