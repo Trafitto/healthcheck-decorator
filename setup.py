@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='healthcheck-decorator',
     packages=['healthcheck_decorator'],
-    version='0.1.0',
+    version='0.1.1',
     keywords=['healtcheck', 'decorator', 'monitoring'],
     description='Decorate a function to monitor if it is executed',
     url='https://github.com/Trafitto/healthcheck-decorator',

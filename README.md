@@ -28,3 +28,6 @@ You can check all the function added to monitor with:
 `keys = HealthcheckedFunctionMonitor().get()` 
 
 HealthcheckedFunctionMonitor is a singleton
+
+
+More info on the implementation here: [healthcheck-decorator-pip-tester](https://github.com/Trafitto/healthcheck-decorator-pip-tester)
