@@ -3,7 +3,7 @@ from .conf import REDIS_HOST, REDIS_DB, REDIS_PORT
 
 
 class HealthcheckedFunctionMonitor:
-    healchecked_function = []
+    healthchecked_function = []
     cache = None
 
     def __init__(self):
@@ -16,16 +16,16 @@ class HealthcheckedFunctionMonitor:
         return cls.instance
 
     def set(self, key):
-        self.healchecked_function.append(key)
+        self.healthchecked_function.append(key)
 
     def get(self):
-        return self.healchecked_function
+        return self.healthchecked_function
 
     def delete(self, key):
         if key == '*':
-            self.healchecked_function = []
-        if self.healchecked_function:
-            del self.healchecked_function[key]
+            self.healthchecked_function = []
+        if self.healthchecked_function:
+            del self.healthchecked_function[key]
 
     def get_cache_client(self):
         if not self.cache:

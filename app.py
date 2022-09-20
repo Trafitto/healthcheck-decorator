@@ -1,6 +1,6 @@
 import time
-from healtcheck_decorator.heathcheck import healthcheck
-from healtcheck_decorator.monitor import HealthcheckedFunctionMonitor
+from healthcheck_decorator.heathcheck import healthcheck
+from healthcheck_decorator.monitor import HealthcheckedFunctionMonitor
 
 
 @healthcheck
