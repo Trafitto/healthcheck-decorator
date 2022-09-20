@@ -21,6 +21,12 @@ class HealthcheckedFunctionMonitor:
     def get(self):
         return self.healchecked_function
 
+    def delete(self, key):
+        if key == '*':
+            self.healchecked_function = []
+        if self.healchecked_function:
+            del self.healchecked_function[key]
+
     def get_cache_instance(self):
         if not self.cache:
             self.cache = redis.Redis(
