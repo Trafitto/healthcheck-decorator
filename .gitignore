@@ -161,4 +161,3 @@ cython_debug/
 #.idea/
 
 healtcheck_decorator/__pycache__/
-healtcheck_decorator/__pycache__/heathcheck.cpython-38.pyc

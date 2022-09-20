@@ -9,7 +9,7 @@ The idea is to decorate a function to monitor if it is executed
 Simply add the decorator to the function you want to monitor
 
 ```
-from healtcheck_decorator.heathcheck import healthcheck
+from healtcheck_decorator.healthcheck import healthcheck
 
 
 @healthcheck

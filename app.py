@@ -1,5 +1,5 @@
 import time
-from healthcheck_decorator.heathcheck import healthcheck
+from healthcheck_decorator.healthcheck import healthcheck
 from healthcheck_decorator.monitor import HealthcheckedFunctionMonitor
 
 
