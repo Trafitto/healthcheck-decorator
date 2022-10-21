@@ -2,6 +2,12 @@ import time
 from healthcheck_decorator.healthcheck import healthcheck
 from healthcheck_decorator.monitor import HealthcheckedFunctionMonitor
 
+import redis
+
+REDIS_HOST = 'redis'
+REDIS_PORT = 6379
+REDIS_DB = 0
+
 
 @healthcheck
 def test():

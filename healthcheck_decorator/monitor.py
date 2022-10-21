@@ -1,13 +1,9 @@
 import redis
 from .conf import REDIS_HOST, REDIS_DB, REDIS_PORT
-
+from .conf import CACHE_STORAGE
 
 class HealthcheckedFunctionMonitor:
     healthchecked_function = []
-    cache = None
-
-    def __init__(self):
-        self.cache = self.get_cache_client()
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -26,9 +22,3 @@ class HealthcheckedFunctionMonitor:
             self.healthchecked_function = []
         if self.healthchecked_function:
             del self.healthchecked_function[key]
-
-    def get_cache_client(self):
-        if not self.cache:
-            self.cache = redis.Redis(
-                host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
-        return self.cache

@@ -1,13 +1,14 @@
 import functools
 from .monitor import HealthcheckedFunctionMonitor
-from .conf import DEFAULT_TTL, REDIS_HOST, REDIS_DB, REDIS_PORT
+from .conf import DEFAULT_TTL,CACHE_STORAGE
 
 monitor = HealthcheckedFunctionMonitor()
-redis_client = monitor.get_cache_client()
+#TODO: Pass cache client
+cache_client = CACHE_STORAGE()
 default_ttl = DEFAULT_TTL
 
 
-def healthcheck(func=None, key=None, ttl=default_ttl, cache_client=redis_client):
+def healthcheck(func=None, key=None, ttl=default_ttl, cache_client=cache_client):
     if func is None:
         return functools.partial(healthcheck, key=key, ttl=ttl, cache_client=cache_client)
     cache_key = key or func.__name__
