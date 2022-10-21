@@ -1,4 +1,4 @@
-from adapters import BaseCacheAdapter
+from .base_adapter import BaseCacheAdapter
 
 
 class MemcachedAdapter(BaseCacheAdapter):
