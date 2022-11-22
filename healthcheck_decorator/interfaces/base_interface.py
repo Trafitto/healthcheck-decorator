@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class BaseCacheAdapter(ABC):
+class BaseCacheInterface(ABC):
     
     @abstractmethod
     def get(self, key:str):

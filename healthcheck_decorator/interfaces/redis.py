@@ -1,7 +1,7 @@
-from .base_adapter import BaseCacheAdapter
+from .base_interface import BaseCacheInterface
 
 
-class MemcachedAdapter(BaseCacheAdapter):
+class RedisInterface(BaseCacheInterface):
 
     def __init__(self, client):
         self.client = client
