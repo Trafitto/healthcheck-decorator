@@ -1,6 +1,4 @@
-from .adapters import CACHE_STORAGE_LIST
-
-DEFAULT_TTL = 24 * 60 * 60 * 1000
+from .interfaces import CACHE_STORAGE_LIST
 
 DEFAULT_CACHE_STORAGE = CACHE_STORAGE_LIST['redis']
 

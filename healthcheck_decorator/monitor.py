@@ -1,7 +1,3 @@
-import redis
-from .conf import REDIS_HOST, REDIS_DB, REDIS_PORT
-from .conf import CACHE_STORAGE
-
 class HealthcheckedFunctionMonitor:
     healthchecked_function = []
 

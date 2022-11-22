@@ -3,8 +3,8 @@ from .base_interface import BaseCacheInterface
 
 class MemcachedInterface(BaseCacheInterface):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self):
+        pass
 
     def get(self, key: str):
         return self.client.get(key)

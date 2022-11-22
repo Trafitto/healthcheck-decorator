@@ -1,23 +1,24 @@
 import functools
 from .monitor import HealthcheckedFunctionMonitor
-from .conf import DEFAULT_TTL,CACHE_STORAGE
+from .conf import CACHE_STORAGE
 
 monitor = HealthcheckedFunctionMonitor()
-#TODO: Pass cache client
-cache_client = CACHE_STORAGE()
-default_ttl = DEFAULT_TTL
 
 
-def healthcheck(func=None, key=None, ttl=default_ttl, cache_client=cache_client):
+def healthcheck(func=None, key=None, ttl=None):
+    cache_client = CACHE_STORAGE.instance
+    if ttl is None:
+        ttl=cache_client.default_ttl
+
     if func is None:
-        return functools.partial(healthcheck, key=key, ttl=ttl, cache_client=cache_client)
+        return functools.partial(healthcheck, key=key, ttl=ttl)
     cache_key = key or func.__name__
     monitor.set(cache_key)
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        cache_client.set(cache_key, 'updated', ttl)
+        cache_client.set(key=cache_key, value='updated', ttl=ttl)
         return result
 
     return wrapper

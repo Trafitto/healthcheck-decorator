@@ -1,13 +1,15 @@
 import time
 from healthcheck_decorator.healthcheck import healthcheck
 from healthcheck_decorator.monitor import HealthcheckedFunctionMonitor
-
+from healthcheck_decorator.conf import CACHE_STORAGE
 import redis
 
 REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_DB = 0
-
+redis_client = redis.Redis(
+                host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
+cache = CACHE_STORAGE().set_client(redis_client)
 
 @healthcheck
 def test():
@@ -24,7 +26,7 @@ def test_function_not_working():
 def checker():
     monitor = HealthcheckedFunctionMonitor()
     keys = monitor.get()
-    cache_client = monitor.get_cache_client()
+    cache_client = redis_client
     for key in keys:
         if cache_client.get(key):
             print(f'{key} ok')
