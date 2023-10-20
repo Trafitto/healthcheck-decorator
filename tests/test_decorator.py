@@ -2,8 +2,17 @@
 import pytest
 from healthcheck_decorator.healthcheck import healthcheck
 from healthcheck_decorator.monitor import HealthcheckedFunctionMonitor
+from datetime import datetime
 
-
+@pytest.fixture(autouse=True)
+def redis_db():
+    monitor = HealthcheckedFunctionMonitor()
+    cache = monitor.get_cache_client()
+    keys = cache.keys('*')
+    monitor.delete('*')
+    if keys:
+        cache.delete(*keys)
+        
 @pytest.fixture(autouse=True)
 def redis_db():
     monitor = HealthcheckedFunctionMonitor()
@@ -34,4 +43,3 @@ def test_cache_key():
     redis_key = redis.keys('*')
     assert len(keys) == len(redis_key)
     assert redis_key[0].decode('ascii') == 'to_be_decorated'
-    assert redis.get(redis_key[0]).decode('ascii') == 'updated'

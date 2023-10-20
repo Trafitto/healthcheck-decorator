@@ -31,3 +31,22 @@ HealthcheckedFunctionMonitor is a singleton
 
 
 More info on the implementation here: [healthcheck-decorator-pip-tester](https://github.com/Trafitto/healthcheck-decorator-pip-tester)
+
+## Tests
+
+Before launching the tests you must make sure you have installed the package with: 
+
+`make package_install`
+
+or
+
+`pip install .`
+
+Then you can launch the test:
+
+`make test`
+
+or 
+
+
+`pytest`
